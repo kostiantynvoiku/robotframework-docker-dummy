@@ -6,7 +6,9 @@ RUN apt-get update \
 RUN wget --no-verbose https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 RUN dpkg --install google-chrome-stable_current_amd64.deb; apt-get --fix-broken --assume-yes install
 
-RUN pip3 install -r ./requirements.txt
+COPY ./requirements.txt /tmp
+RUN pip3 install -r /tmp/requirements.txt
+
 
 RUN CHROMEDRIVER_VERSION=`wget --no-verbose --output-document - https://chromedriver.storage.googleapis.com/LATEST_RELEASE` \
     && wget --no-verbose --output-document /tmp/chromedriver_linux64.zip http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip \
