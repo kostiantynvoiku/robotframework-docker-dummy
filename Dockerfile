@@ -6,7 +6,7 @@ RUN apt-get update \
 RUN wget --no-verbose https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 RUN dpkg --install google-chrome-stable_current_amd64.deb; apt-get --fix-broken --assume-yes install
 
-COPY ./requirements.txt /tmp
+#COPY ./requirements.txt /tmp
 RUN pip3 install -r /tmp/requirements.txt
 
 
