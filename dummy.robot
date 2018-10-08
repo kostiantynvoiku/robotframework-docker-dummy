@@ -4,7 +4,7 @@ Library  SeleniumLibrary
 Library  XvfbRobot
 
 #robot \
-#--include webdriver-test \
+#--include local-test \
 #--listener 'allure_robotframework;./results/allure' \
 #--outputdir results \
 #dummy.robot
