@@ -1,7 +1,6 @@
-# Robotframework + Docker + Allure
+# Acceptance testing using Robotframework + Docker + Allure
 
-How to run acceptance tests using Robotframework + Docker + Allure.
-
+This is the short guid how to run Robotframework in 2 ways: inside Docker and locally.
 
 ## Running tests inside Docker container
 ### Requirements:
