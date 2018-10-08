@@ -26,7 +26,7 @@ $ docker run --rm -i -e DBUS_SESSION_BUS_ADDRESS=/dev/null \
       /test/dummy.robot
 ```
 
-5. Gernerate Allure report:
+5. Generate Allure report:
 
 ```
 $ allure serve results/allure
@@ -56,7 +56,7 @@ robot \
 dummy.robot
 ```
 
-3. Gernerate Allure report:
+3. Generate Allure report:
 
 ```
 $ allure serve results/allure
