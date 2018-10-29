@@ -2,6 +2,7 @@
 Documentation  Dummy test
 Library  SeleniumLibrary
 Library  XvfbRobot
+Library  ./SeleniumLibraryHelper.py
 
 #robot \
 #--include local-test \
