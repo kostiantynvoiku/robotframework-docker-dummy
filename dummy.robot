@@ -2,40 +2,52 @@
 Documentation  Dummy test
 Library  SeleniumLibrary
 Library  XvfbRobot
-Library  ./SeleniumLibraryHelper.py
+Library  Libraries/SeleniumLibraryHelper.py
+Test Setup  ${DISPLAY}
+Test Teardown  close all browsers
 
 #robot \
-#--include local-test \
+#--variable DISPLAY:'Begin web test on virtual display' \
 #--listener 'allure_robotframework;./results/allure' \
 #--outputdir results \
 #dummy.robot
 
+#docker run --rm -i -e DBUS_SESSION_BUS_ADDRESS=/dev/null \
+#      --shm-size  512M \
+#      --user $( id -u $USER ):$( id -g $USER ) \
+#      --volume $(pwd):/test/:rw \
+#      --workdir /test/ konstantinxv/robotframework-docker-project \
+#      robot \
+#      --variable DISPLAY:'Begin web test on virtual display' \
+#      --outputdir results \
+#      --listener 'allure_robotframework;./results/allure' \
+#      /test/dummy.robot
+
 # Generate Allure: allure serve results/allure
 
 *** Variables ***
-@{BROWSER} =  firefox  chrome  safari
-${WIDTH} =  1920
-${HEIGHT} =  1080
+${BROWSER}          chrome
+${WIDTH}            1920
+${HEIGHT}           1080
+${START_URL}        https://www.google.com/
+${DISPLAY}          Begin web test on local display
 
 *** Test Cases ***
-Demo Test in Local Browser
-    [Tags]  local-test
-    Open Browser  about:blank  @{BROWSER}[0]
-    Set Window Size  ${WIDTH}  ${HEIGHT}
-    Go To    https://www.google.com/
-    Wait Until Page Contains Element  id=lst-ib
-    Capture Page Screenshot
-    Close Browser
+Demo Test
+    go to  ${START_URL}
+    wait until page contains element  css=input[name="q"]
+    capture page screenshot
 
-Demo Test on Virtual Display
-    [Tags]  webdriver-test
-    Start Virtual Display  ${WIDTH}  ${HEIGHT}
+
+*** Keywords ***
+Begin web test on local display
+    open browser  about:blank  ${BROWSER}
+    set window size  ${WIDTH}  ${HEIGHT}
+
+Begin web test on virtual display
+    start virtual display  ${WIDTH}  ${HEIGHT}
     ${chrome options} =     Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
-    Call Method    ${chrome options}   add_argument    no-sandbox
-    Call Method    ${chrome options}   add_argument    disable-gpu
-    Create Webdriver    Chrome    chrome_options=${chrome options}
-    Set Window Size  ${WIDTH}  ${HEIGHT}
-    Go To    https://www.google.com/
-    Wait Until Page Contains Element  id=lst-ib
-    Capture Page Screenshot
-    Close Browser
+    call method    ${chrome options}   add_argument    no-sandbox
+    call method    ${chrome options}   add_argument    disable-gpu
+    create webdriver    Chrome    chrome_options=${chrome options}
+    set window size  ${WIDTH}  ${HEIGHT}

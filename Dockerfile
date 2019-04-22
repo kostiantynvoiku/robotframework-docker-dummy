@@ -1,7 +1,10 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
 RUN apt-get update \
-      && apt-get install --quiet --assume-yes python3-pip unzip firefox wget less xvfb git
+      && apt-get install -y software-properties-common \
+      && apt-add-repository ppa:qameta/allure \
+      && apt-get update \
+      && apt-get install --quiet --assume-yes python3-pip unzip firefox wget less xvfb git allure
 
 RUN wget --no-verbose https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 RUN dpkg --install google-chrome-stable_current_amd64.deb; apt-get --fix-broken --assume-yes install

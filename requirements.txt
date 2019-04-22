@@ -1,9 +1,8 @@
-selenium==3.14.0
-requests==2.19.1
-urllib3==1.23
-robotframework==3.0.4
-robotframework-imaplibrary
-robotframework-seleniumlibrary==3.2.0rc1
+selenium
+requests
+urllib3
+robotframework
+robotframework-seleniumlibrary
 robotframework-requests 
 robotframework-xvfb
 allure-robotframework
