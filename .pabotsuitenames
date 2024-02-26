@@ -1,0 +1,5 @@
+datasources:5268dae1d2a01afd56097ce02bcbcd6a9d89e665
+commandlineoptions:ac5120f5e30ebbb8d37e6e0d7e373a53651c5e19
+suitesfrom:no-suites-from-option
+file:b26f5f7c37c2629491f85a70e35ca562e6e091f3
+--test Suites.Booking.Booking suite desktop view.As Customer with invalid payment data I should not be able to book Pro (bfo1 A, re-engaging)
